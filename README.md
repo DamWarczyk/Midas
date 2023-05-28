@@ -13,7 +13,7 @@ Aby uruchomić aplikację Midas w środowisku kontenerowym, musisz mieć zainsta
 Aby uruchomić aplikację Midas, wykonaj następujące kroki:
 
 1. Sklonuj repozytorium:
-git clone [https://github.com/your-username/midas.git](https://github.com/DamWarczyk/Midas.git)
+git clone [https://github.com/DamWarczyk/midas.git](https://github.com/DamWarczyk/Midas.git)
 
 
 2. Przejdź do katalogu głównego aplikacji:
