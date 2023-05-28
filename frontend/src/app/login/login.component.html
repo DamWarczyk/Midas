@@ -1,0 +1,63 @@
+<div class="min-w-screen min-h-screen border-y-gray-300 flex items-center justify-center px-5 py-5">
+  <div class="bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full overflow-hidden" style="max-width:1000px">
+    <div class="md:flex w-full py-10 px-5 md:px-10">
+      <div class="text-center mb-10">
+        <div class="mb-6 md:mb-0 flex flex-row">
+        <span class="flex items-center tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl "
+              routerLink="/strona">
+        <a routerLink="/strona">MIDAS </a>
+          <svg class="h-8 w-8 text-yellow-500" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+               stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none"
+                                                                                                        d="M0 0h24v24H0z"/>  <path
+            d="M6 5h12l3 5l-8.5 9.5a.7 .7 0 0 1 -1 0l-8.5 -9.5l3 -5"/>  <path d="M10 12l-2 -2.2l.6 -1"/></svg>
+      </span>
+        </div>
+      </div>
+
+
+      <form [formGroup]="myForm" (ngSubmit)="onClick()" class="item flex-auto">
+
+        <div class="flex -mx-3">
+          <div class="w-full px-3 mb-5">
+            <label class="text-xs font-semibold px-1">Email</label>
+            <div class="flex">
+              <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i
+                class="mdi mdi-email-outline text-gray-400 text-lg"></i></div>
+              <mat-form-field class="input_long">
+                <input matInput placeholder="Email" formControlName="email">
+                <mat-error *ngIf="email?.invalid && email?.touched">Niepoprawny email</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div class="item flex-auto -mx-3">
+          <div class="w-full px-3 mb-12">
+            <label class="text-xs font-semibold px-1">Hasło</label>
+            <div class="flex">
+              <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i
+                class="mdi mdi-lock-outline text-gray-400 text-lg"></i></div>
+              <mat-form-field class="input_long">
+                <input matInput type="password" placeholder="Hasło" formControlName="password">
+                <mat-hint align="end">Hasło musi posiadać jedną wielką litere, znak specjalny oraz musi być conajmniej 8
+                  znakowe
+                </mat-hint>
+                <mat-error *ngIf="password?.invalid && password?.touched">Wpisz dobre hasło</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex -mx-3">
+          <div class="w-full px-3 mb-5">
+            <button
+              class="block w-full max-w-xs mx-auto bg-amber-400 hover:bg-amber-200 focus:bg-amber-600 text-white rounded-lg px-3 py-3 font-semibold disabled:bg-amber-100"
+              type="submit" [disabled]="myForm.invalid">Zaloguj
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

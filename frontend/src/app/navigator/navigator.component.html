@@ -1,0 +1,38 @@
+<nav id="header" class="w-full h-16" >
+    <p>
+      <mat-toolbar>
+        <button mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="/oferta">Oferta</button>
+          <button mat-menu-item>Regulamin</button>
+          <ng-container *ngIf="hasRole('ROLE_ADMIN')">
+            <button mat-menu-item routerLink="/admin">Panel Admina</button>
+          </ng-container>
+        </mat-menu>
+        <span class="example-spacer"></span>
+        <span class="flex items-center tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl " routerLink="/strona">
+        <a class="text-black" routerLink="/strona">MIDAS </a>
+          <svg class="h-8 w-8 text-yellow-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M6 5h12l3 5l-8.5 9.5a.7 .7 0 0 1 -1 0l-8.5 -9.5l3 -5" />  <path d="M10 12l-2 -2.2l.6 -1" /></svg>
+      </span>
+        <span class="example-spacer"></span>
+        <ng-container *ngIf="auth.isLoggedIn$ | async">
+          Witaj {{auth.user!.sub}}
+          <button mat-raised-button class="buttons" aria-label="Example icon-button with heart icon" routerLink="/strona" (click)="logOut()">
+          Wyloguj
+        </button>
+        </ng-container>
+        <ng-container *ngIf="!(auth.isLoggedIn$ | async)">
+        <button mat-raised-button class="buttons" aria-label="Example icon-button with heart icon" routerLink="/login">
+          Zaloguj
+        </button>
+        </ng-container>
+        <ng-container *ngIf="!(auth.isLoggedIn$ | async)">
+        <button mat-raised-button class="buttons" aria-label="Example icon-button with share icon" routerLink="/register">
+          Zarejestruj
+        </button>
+        </ng-container>
+      </mat-toolbar>
+  </nav>
+
+
+

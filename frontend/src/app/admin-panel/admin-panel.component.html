@@ -1,0 +1,55 @@
+<div class="addRoleToUser">
+  <div>
+    <mat-accordion>
+      <mat-expansion-panel class="" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h2>DODAJ ROLE DO UŻYTKOWANIKA</h2>
+          </mat-panel-title>
+          <mat-panel-description>
+
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <form [formGroup]="myForm" (ngSubmit)="onClick()" class="item flex-auto">
+          <div class="addRoleToUser">
+            <div>
+              <h3>Podaj E-mail użytkownika</h3>
+              <input matInput placeholder="E-mail" formControlName="email">
+              <h3>Podaj nazwe roli</h3>
+              <input matInput placeholder="Rola" formControlName="roleName">
+              <button
+                class="block w-full max-w-xs mx-auto bg-amber-400 hover:bg-amber-200 focus:bg-amber-600 text-white rounded-lg px-3 py-3 font-semibold disabled:bg-amber-100"
+                type="submit" [disabled]="myForm.invalid">Dodaj
+              </button>
+            </div>
+          </div>
+        </form>
+      </mat-expansion-panel>
+      <mat-expansion-panel class="" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h2>DODAJ ROLE</h2>
+          </mat-panel-title>
+          <mat-panel-description>
+
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <form [formGroup]="formRoleAdd" (ngSubmit)="addRole()" class="item flex-auto">
+          <div class="addRoleToUser">
+            <div>
+              <h2>Dodaj role</h2>
+              <h3>Podaj nazwe roli:</h3>
+              <input matInput placeholder="name" formControlName="name">
+              <button
+                class="block w-full max-w-xs mx-auto bg-amber-400 hover:bg-amber-200 focus:bg-amber-600 text-white rounded-lg px-3 py-3 font-semibold disabled:bg-amber-100"
+                type="submit" [disabled]="formRoleAdd.invalid">Dodaj
+              </button>
+            </div>
+          </div>
+        </form>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+  </div>
+</div>
