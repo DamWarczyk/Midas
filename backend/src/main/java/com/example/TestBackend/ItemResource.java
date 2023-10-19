@@ -18,7 +18,7 @@ public class ItemResource {
     }
 
     @GetMapping("/all")
-    @CrossOrigin("http://localhost:4200")
+    //@CrossOrigin("http://localhost:4200")
     public ResponseEntity<List<Item>> getAllItem(){
         List<Item> items = itemService.findAllItem();
         return new ResponseEntity<>(items, HttpStatus.OK);
@@ -60,4 +60,6 @@ public class ItemResource {
         itemService.deleteItem(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+
 }
