@@ -27,7 +27,7 @@ h2{
 }
 
 .carousel-open:checked + .carousel-item {
-  position: static;
+  position: center;
   opacity: 100;
 }
 

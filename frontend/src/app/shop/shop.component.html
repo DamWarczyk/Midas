@@ -15,10 +15,10 @@
           <p class="text-gray-500 dark:text-gray-300">{{listItems.length}} Items</p>
           <div class="flex items-center">
             <p class="text-gray-500 dark:text-gray-300">Sort</p>
-            <select class="font-medium text-gray-700 bg-transparent dark:text-gray-500 focus:outline-none">
-              <option value="#">Recommended</option>
-              <option value="#">Size</option>
-              <option value="#">Price</option>
+            <select class="font-medium text-gray-700 bg-transparent dark:text-gray-500 focus:outline-none" #filters (change)="filterItems(filters.value)">
+              <option value="Recommended" default>Recommended</option>
+              <option value="Price asc">Cena rosnąca</option>
+              <option value="Price dec">Cena malejąco</option>
             </select>
           </div>
         </div>
@@ -26,7 +26,7 @@
         <ng-container *ngIf="hasRole('ROLE_ADMIN')">
           <div>
             <button mat-raised-button (click)="openItemAddDialog('0ms', '0ms')">
-            Add item
+            Dodaj przedmiot
             </button>
           </div>
         </ng-container>

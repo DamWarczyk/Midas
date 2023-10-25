@@ -1,11 +1,15 @@
 package com.example.TestBackend;
 import com.example.TestBackend.model.Item;
 import  com.example.TestBackend.service.ItemService;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -61,5 +65,44 @@ public class ItemResource {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    //eksport do xml
+    @GetMapping("/export/xml")
+    @CrossOrigin("http://localhost:4200")
+    public ResponseEntity<String> exportRidersToXML() {
+        List<Item> items = itemService.findAllItem();
+        String xmlFilePath = "items.xml";
 
+        try (FileWriter writer = new FileWriter(xmlFilePath)) {
+            // nagówek i ele główny
+            writer.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+            writer.append("<items>\n");
+
+            // zapis do ele xml
+            for (Item item : items) {
+                writer.append(String.format("  <item>\n    <number>%d</number>\n    <name>%s</name>\n <cena>%d</cena>\n <opis>%s</opis>\n <imageUrl>%s</imageUrl>\n  </item>\n",
+                        item.getId(), item.getName(), item.getCena(), item.getOpis(),item.getImageUrl()));
+            }
+
+            // zamknięcie elementu
+            writer.append("</items>");
+
+            writer.flush();
+        } catch (IOException e) {
+            return new ResponseEntity<>("Blad eksportu do xml", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return new ResponseEntity<>("Wykonano eksport do xml.", HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/xml", produces = MediaType.APPLICATION_XML_VALUE)
+    public ResponseEntity<byte[]> generateRidersXmlBlob() {
+        byte[] xmlBlob = itemService.writeRidersToXML();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_XML);
+        headers.setContentLength(xmlBlob.length);
+        headers.setCacheControl("no-cache");
+
+        return new ResponseEntity<>(xmlBlob, headers, HttpStatus.OK);
+    }
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items>
+  <item>
+    <number>8</number>
+    <name>Pierścionek, ale złoty</name>
+ <cena>1234</cena>
+ <opis>New ring</opis>
+ <imageUrl>https://picsum.photos/200/300</imageUrl>
+  </item>
+  <item>
+    <number>9</number>
+    <name>Example</name>
+ <cena>1222</cena>
+ <opis>Example</opis>
+ <imageUrl>https://picsum.photos/200/300</imageUrl>
+  </item>
+</items>

@@ -49,6 +49,20 @@
           </div>
         </form>
       </mat-expansion-panel>
+      <mat-expansion-panel class="" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h2>Pobierz przedmiotu do XML</h2>
+          </mat-panel-title>
+          <mat-panel-description>
+
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <button (click)="downloadItemsXML()"
+          class="block w-full max-w-xs mx-auto bg-amber-400 hover:bg-amber-200 focus:bg-amber-600 text-white rounded-lg px-3 py-3 font-semibold disabled:bg-amber-100"
+           >Pobierz XML
+        </button>
+      </mat-expansion-panel>
     </mat-accordion>
 
   </div>

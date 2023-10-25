@@ -6,7 +6,7 @@ import {NgbCarouselModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import {FormsModule} from "@angular/forms";
-import { StronaGlownaComponent } from './strona-glowna/strona-glowna.component';
+import { MainPage } from './main-page/main-page';
 import {NavigatorComponent} from "./navigator/navigator.component";
 import {ItemAdd, ItemBuy, ItemUpdate, ShopComponent} from './shop/shop.component';
 import { NavigationModule } from './navigation.module';
@@ -41,7 +41,7 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    StronaGlownaComponent,
+    MainPage,
     NavigatorComponent,
     ShopComponent,
     FooterComponent,

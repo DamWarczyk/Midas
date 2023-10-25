@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {StronaGlownaComponent} from "./strona-glowna/strona-glowna.component";
+import {MainPage} from "./main-page/main-page";
 import {ShopComponent} from "./shop/shop.component";
 
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/strona', pathMatch: 'full' },
-  { path: 'strona', component: StronaGlownaComponent },
+  { path: 'strona', component: MainPage },
 ];
 
 @NgModule({

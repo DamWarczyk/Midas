@@ -19,9 +19,6 @@ export class HttpServiceService {
     return this.http.get<any>(`${this.apiServerURL}/student/all`)
   }
 
-  public getStudentById(id: number): Observable<Student>{
-    return this.http.get<any>(`${this.apiServerURL}/student/find/${id}`);
-  }
 
   public addStudent(student: Student): Observable<Student>{
     return this.http.post<any>(`${this.apiServerURL}/student/add`, student);
@@ -32,6 +29,8 @@ export class HttpServiceService {
     };
     return this.http.post<any>(`${this.apiServerURL}/login`, `email=${login.email}&password=${login.password}`, options)
   }
+
+
   public updateStudent(student: Student): Observable<Student>{
     return this.http.put<any>(`${this.apiServerURL}/student/update`, student);
   }
@@ -72,6 +71,10 @@ export class HttpServiceService {
 
   public addRole(role: string): Observable<void>{
     return this.http.post<any>(`${this.apiServerURL}/student/role/add`, role);
+  }
+
+  public exportItemsToXML(): Observable<Blob>{
+    return this.http.get(`http://localhost:8080/item/xml`, { responseType: 'blob' })
   }
 
 }

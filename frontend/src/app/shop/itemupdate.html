@@ -1,4 +1,4 @@
-<h1 mat-dialog-title itemid="">Update Item</h1>
+<h1 mat-dialog-title itemid="">Zaktualizuj przedmiot</h1>
 <form [formGroup]="myForm" (ngSubmit)="onClick()" class="item flex-auto">
   <div mat-dialog-content>
     <h2>Name</h2>
@@ -14,7 +14,7 @@
     <input matInput type="text" id="imageUrl" formControlName="imageUrl">
   </div>
   <div mat-dialog-actions>
-    <button mat-button mat-dialog-close>No</button>
-    <button mat-button mat-dialog-close cdkFocusInitial type="submit" [disabled] = "myForm.invalid">Ok</button>
+    <button mat-button mat-dialog-close>Anuluj</button>
+    <button mat-button mat-dialog-close cdkFocusInitial type="submit" [disabled] = "myForm.invalid">Zaktualizuj</button>
   </div>
 </form>

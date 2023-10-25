@@ -17,6 +17,7 @@ export class ShopComponent implements OnInit {
   }
 
   public listItems: Item[] = [];
+  public filter: string = "Recommended";
 
   hasRole(role: string): boolean {
     return this.auth.user?.roles.includes(role) || false;
@@ -36,16 +37,8 @@ export class ShopComponent implements OnInit {
 
   openItemAddDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(ItemAdd);
+    this.dialog.afterAllClosed.subscribe( () => this.getItem())
   }
-
-  // sortItemsByPrice(){
-  //   for (let i=0; i< this.listItems.length; i++){
-  //     if (this.listItems[i].cena < this.listItems[i+1].cena){
-  //       this.listItems.push();
-  //     }
-  //   }
-  // }
-
 
   deleteItem(item: Item) {
     this.httpService.deleteItem(item.id).subscribe(() => this.getItem());
@@ -53,10 +46,29 @@ export class ShopComponent implements OnInit {
 
   updateItem(item: Item) {
     this.dialog.open(ItemUpdate, {data: item});
+    this.dialog.afterAllClosed.subscribe( () => this.getItem())
   }
 
   buyItem(item: Item){
     this.dialog.open(ItemBuy, {data: item})
+    this.dialog.afterAllClosed.subscribe( () => this.getItem())
+  }
+
+  filterItems(value:string){
+    this.filter = value;
+    console.log(this.filter)
+
+    if (this.filter == "Price asc"){
+      this.listItems.sort( (a, b) => {return a.cena - b.cena})
+    }
+
+    if (this.filter == "Price dec"){
+      this.listItems.sort( (a, b) => {return b.cena - a.cena})
+    }
+
+    if (this.filter == "Recommended"){
+      this.getItem()
+    }
   }
 }
 

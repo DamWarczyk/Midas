@@ -2,16 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import {NgStyle} from "@angular/common";
 import {HttpServiceService} from "../servis/http-service.service";
 import {Item} from "../interface/item";
+import {Router} from "@angular/router";
 
 
 @Component({
-  selector: 'app-strona-glowna',
-  templateUrl: './strona-glowna.component.html',
-  styleUrls: ['./strona-glowna.component.css']
+  selector: 'app-main-page',
+  templateUrl: './main-page.html',
+  styleUrls: ['./main-page.css']
 })
-export class StronaGlownaComponent implements OnInit {
+export class MainPage implements OnInit {
 
-  constructor(private httpService: HttpServiceService) { }
+  constructor(private httpService: HttpServiceService, private router: Router) { }
 
   public listItems: Item[] = [];
 
@@ -29,5 +30,8 @@ export class StronaGlownaComponent implements OnInit {
   photo = '../../assets/images/goldering2.jpg';
 
 
+  routerToItemPage() {
+    this.router.navigate(['/oferta'])
+  }
 }
 

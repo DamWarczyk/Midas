@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HttpServiceService} from "../servis/http-service.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {saveAs} from 'file-saver';
 
 export interface AddRoleToUser {
   email: String;
@@ -42,10 +43,14 @@ export class AdminPanelComponent implements OnInit {
 
   onClick() {
     this.addRoletoUser = this.myForm.value;
-    this.http.addRoleToUser(this.addRoletoUser.email, this.addRoletoUser.roleName).subscribe(() => this.openSnackBar("Doodano role do użytkownika"));
+    this.http.addRoleToUser(this.addRoletoUser.email, this.addRoletoUser.roleName).subscribe(() => this.openSnackBar("Dodano role do użytkownika"));
   }
 
   addRole() {
-    this.http.addRole(this.formRoleAdd.value).subscribe(() => this.openSnackBar("Doodano Role"));
+    this.http.addRole(this.formRoleAdd.value).subscribe(() => this.openSnackBar("Dodano Role"));
+  }
+
+  downloadItemsXML() {
+    this.http.exportItemsToXML().subscribe((data) => {saveAs(data, `items.xml`)})
   }
 }

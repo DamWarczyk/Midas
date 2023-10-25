@@ -32,6 +32,12 @@ export class AuthService {
     }))
   }
 
+
+
+  getRefreshToken(): string | null{
+    return localStorage.getItem("refresh_token")
+  }
+
   logout(){
     this._isLoggedIn$.next(false);
     localStorage.clear();

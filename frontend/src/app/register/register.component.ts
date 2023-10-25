@@ -3,6 +3,9 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Student} from "../interface/student";
 import {HttpServiceService} from "../servis/http-service.service";
 import {HttpErrorResponse} from "@angular/common/http";
+import {Login} from "../interface/login";
+import {Router} from "@angular/router";
+import {AuthService} from "../servis/auth.service";
 
 @Component({
   selector: 'app-register',
@@ -18,7 +21,14 @@ export class RegisterComponent implements OnInit {
   email: '',
   password: '',
 }
-  constructor(private fb: FormBuilder, private httpService: HttpServiceService) {
+
+  login: Login = {
+    email: '',
+    password: '',
+  };
+
+
+  constructor(private fb: FormBuilder, private httpService: HttpServiceService, private route: Router, private auth: AuthService) {
     this.myForm = this.fb.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
@@ -35,8 +45,22 @@ export class RegisterComponent implements OnInit {
      console.log("Zarejstrowano");
      this.student = this.myForm.value
      this.httpService.addStudent(this.student).subscribe(
-       (response: Student) => {console.log(response);},
-       (error: HttpErrorResponse) => {alert(error.message)})
+       (response: Student) => {
+         console.log(response);
+         this.login.email = response.email
+         this.login.password = this.myForm.get('password')?.value
+         this.auth.login(this.login).subscribe(
+           () => {
+             this.route.navigate(['/strona'])
+           }),
+           (error: HttpErrorResponse) => {
+             alert(error.message)
+           }
+       },
+       (error: HttpErrorResponse) => {
+         alert(error.message)
+       }
+     )
   }
 
 
